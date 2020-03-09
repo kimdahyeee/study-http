@@ -1,4 +1,4 @@
-package sjt.http.server;
+package sjt.http.core.response;
 
 import lombok.Getter;
 
