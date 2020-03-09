@@ -1,26 +1,11 @@
-package sjt.http.server;
+package sjt.http.core.request;
 
 import lombok.Getter;
 import lombok.ToString;
+import sjt.http.core.response.HttpMethod;
 
 public class HttpRequest {
-    @ToString
-    @Getter
-    public static class HttpHeaders {
-        private StartLine startLine;
-        private RequestHeaders requestHeaders;
-        private GeneralHeaders generalHeaders;
-        private EntityHeaders entityHeaders;
-
-        public HttpHeaders() {
-            this.startLine = new StartLine();
-        }
-
-        public HttpHeaders(String request) {
-            this.startLine = new StartLine(request);
-        }
-    }
-
+    private static final String SEPERATOR_START_LINE = " ";
     @Getter
     @ToString
     public static class StartLine {
@@ -29,15 +14,24 @@ public class HttpRequest {
         private String protocolVersion;
 
         public StartLine() {
-            this.protocolVersion = "HTTP/1.0"; // 기본 메서드 지정해줘야 할까?
+            this.protocolVersion = "HTTP/1.0";
         }
 
         public StartLine(String startLine) {
-            String[] request = startLine.split(" ");
+            String[] request = startLine.split(SEPERATOR_START_LINE);
             this.httpMethod = HttpMethod.valueOf(request[0]);
             this.requestTarget = request[1];
             this.protocolVersion = request[2];
         }
+    }
+
+    @ToString
+    @Getter
+    public static class HttpHeaders {
+        private RequestHeaders requestHeaders;
+        private GeneralHeaders generalHeaders;
+
+        private EntityHeaders entityHeaders;
     }
 
     public static class RequestHeaders {
