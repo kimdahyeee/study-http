@@ -1,0 +1,24 @@
+GET 127.0.0.1:8081
+Content-Type: application/json
+
+{"id" : 1}
+
+###
+GET www.naver.com
+Accept-Charset: EUC-kr
+
+###
+
+GET www.slipp.net/about
+Accept-Charset: EUC-kr
+
+###
+
+GET https://www.halfsms.co.kr/emoticon/SMS/products
+Content-Type: text/plain
+
+{
+"categoryCd" :"S_1524461466589"
+}
+
+###

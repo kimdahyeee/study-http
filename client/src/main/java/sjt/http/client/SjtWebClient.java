@@ -1,12 +1,13 @@
 package sjt.http.client;
 
+import com.sun.deploy.net.HttpResponse;
+import com.sun.deploy.net.MessageHeader;
 import lombok.extern.slf4j.Slf4j;
+import sjt.http.core.request.HttpRequest;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
+import java.io.*;
 import java.net.Socket;
+import java.net.URL;
 import java.net.UnknownHostException;
 
 @Slf4j
@@ -17,9 +18,9 @@ public class SjtWebClient {
                 PrintWriter writer = new PrintWriter(socket.getOutputStream(), true);
                 BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()))) {
             writer.append("GET /index.html HTTP/1.1\r\n"); // http request start line
-            writer.append("Content-type: text/plain\r\n");
+            writer.append("Content-type: application/json\r\n");
             writer.append("\r\n").flush();
-//            writer.println("GET"); // bad request
+
             log.info("response : " + in.readLine());
         } catch (UnknownHostException e) {
             log.error("not found host : " + e);

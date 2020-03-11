@@ -22,17 +22,20 @@ public class SjtWebServer {
                         BufferedReader in = new BufferedReader(new InputStreamReader(client.getInputStream()));
                         PrintWriter out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(client.getOutputStream())))) {
 
-                    String request;
-                    while (!(request = in.readLine()).equals("")) {
-                        log.info(request);
+                    HttpRequest httpRequest = new HttpRequest();
+                    String request = in.readLine();
+                    parse(request);
+
+                    String header;
+                    while (!(header = in.readLine()).equals("")) {
+                            out.write(parse(request));
                     }
-                    out.write(server(request));
                 }
             }
         }
     }
 
-    private static String server(String request) {
+    private static String parse(String request) {
         try {
             HttpRequest.StartLine startLine = new HttpRequest.StartLine(request);
             log.info("client request: " + startLine.toString());

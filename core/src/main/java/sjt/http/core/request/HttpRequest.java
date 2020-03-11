@@ -2,10 +2,16 @@ package sjt.http.core.request;
 
 import lombok.Getter;
 import lombok.ToString;
+import sjt.http.core.HttpHeaders;
 import sjt.http.core.response.HttpMethod;
 
 public class HttpRequest {
     private static final String SEPERATOR_START_LINE = " ";
+
+    private StartLine startLine;
+    private HttpHeaders httpHeaders;
+    private String body;
+
     @Getter
     @ToString
     public static class StartLine {
@@ -23,23 +29,5 @@ public class HttpRequest {
             this.requestTarget = request[1];
             this.protocolVersion = request[2];
         }
-    }
-
-    @ToString
-    @Getter
-    public static class HttpHeaders {
-        private RequestHeaders requestHeaders;
-        private GeneralHeaders generalHeaders;
-
-        private EntityHeaders entityHeaders;
-    }
-
-    public static class RequestHeaders {
-    }
-
-    public static class GeneralHeaders {
-    }
-
-    public static class EntityHeaders {
     }
 }
