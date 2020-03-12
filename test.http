@@ -14,8 +14,9 @@ Accept-Charset: EUC-kr
 
 ###
 
-GET https://www.halfsms.co.kr/emoticon/SMS/products
-Content-Type: text/plain
+POST https://www.halfsms.co.kr/emoticon/SMS/products
+Content-Type: application/json
+
 
 {
 "categoryCd" :"S_1524461466589"

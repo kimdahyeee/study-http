@@ -17,9 +17,10 @@ public class SjtWebClient {
                 Socket socket = new Socket("127.0.0.1", 8081); // 통신할 server socket
                 PrintWriter writer = new PrintWriter(socket.getOutputStream(), true);
                 BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()))) {
-            writer.append("GET /index.html HTTP/1.1\r\n"); // http request start line
+            writer.append("GET /info HTTP/1.1\r\n"); // http request start line
             writer.append("Content-type: application/json\r\n");
-            writer.append("\r\n").flush();
+            writer.append("\r\n");
+            writer.append("{\"name\":\"dahye\"}").flush();
 
             log.info("response : " + in.readLine());
         } catch (UnknownHostException e) {
