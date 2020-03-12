@@ -1,8 +1,11 @@
 package sjt.http.core.response;
 
+import sjt.http.core.HttpHeaders;
+
 public class HttpResponse {
     private StartLine startLine;
     private HttpHeaders httpHeaders;
+    private String body;
 
     public String toResponse() {
         return startLine.toResponse();
@@ -10,11 +13,6 @@ public class HttpResponse {
 
     private HttpResponse(StartLine startLine) {
         this.startLine = startLine;
-    }
-
-    private HttpResponse(StartLine startLine, HttpHeaders httpHeaders) {
-        this.startLine = startLine;
-        this.httpHeaders = httpHeaders;
     }
 
     public static HttpResponse ok() {
@@ -34,21 +32,16 @@ public class HttpResponse {
             this.statusCode = statusCode;
         }
 
-        public static StartLine ok() {
+        static StartLine ok() {
             return new StartLine(StatusCode.OK);
         }
 
-        public static StartLine badRequest() {
+        static StartLine badRequest() {
             return new StartLine(StatusCode.BAD_REQUEST);
         }
 
-        public String toResponse() {
+        String toResponse() {
             return protocolVersion + " " + statusCode.getCode() + " " + statusCode.getMessage();
         }
     }
-
-    public static class HttpHeaders {
-
-    }
-
 }
