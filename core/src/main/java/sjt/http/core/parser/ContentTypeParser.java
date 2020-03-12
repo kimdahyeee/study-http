@@ -1,5 +1,7 @@
 package sjt.http.core.parser;
 
+import java.util.Map;
+
 public interface ContentTypeParser {
-    public void parse();
+    public Map<String, Object> parse();
 }
